@@ -3,22 +3,22 @@ import json
 import math
 
 
-full_name = input('Hello User, what is your full name? ')
+full_name = input('Hello, what is your full name? ')
 
-if len(full_name) < 7:
-    print("Full Name must be at least 7 characters")
+if len(full_name) < 5:
+    print("Name must be at least 5 characters")
     quit()
 elif len(full_name) > 50:
     print("Name must be a max of 30 characters")
     quit()
 else:
-    print("Name Looks Good!")
+    print("Name verified.")
 
-year = int(input('On the day typing this form, what is the year? '))
+year = int(input('What is the year? '))
 birth_year = int(input('What is your birth year? '))
 
-weight = int(input('Weight? '))
-unit = input('L(bs) or (K)g: ')
+weight = int(input('What is your weight? '))
+unit = input('What units were used? L(bs) or (K)g: ')
 
 if unit.upper() == "K":
     converted = weight / 0.45
@@ -40,14 +40,11 @@ else:
 country = input('Which country are you in? ')
 providence = input('Which providence/state do you live in from ' + country + "? ")
 city = input('What city do you live in from ' + providence + "? ")
-
 age = year - birth_year
 place = city + ", " + providence + ", " + country
-
-
 colour = input("What is your favourite colour? ")
 
-formal_response = {
+formatted_response = {
   "fullname": str(full_name),
   "age": str(age),
   "conbirthyear":  str(birth_year),
@@ -58,5 +55,5 @@ formal_response = {
 }
 
 
-json_file = json.dumps(formal_response)
-Path('excrydump.json').write_text(json_file)
+json_file = json.dumps(formatted_response)
+Path('details.json').write_text(json_file)
