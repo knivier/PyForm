@@ -1,59 +1,62 @@
-from pathlib import Path
+from tkinter.simpledialog import askstring
+from tkinter import *
+from tkinter.simpledialog import askinteger
 import json
-import math
+import uuid
 
+top = Tk()
+top.geometry("100x100") 
+name = askstring("Input", "Enter your full name") #name verification follows
+if name is not None and len(name) < 5:
+  print("Your name is too short")
+  quit()
+if isinstance(name, str) and len(name) < 5:
+  print("Your name is too long!")
+  quit()
 
-full_name = input('Hello, what is your full name? ')
-
-if len(full_name) < 5:
-    print("Name must be at least 5 characters")
-    quit()
-elif len(full_name) > 50:
-    print("Name must be a max of 30 characters")
-    quit()
+year = askinteger("Input", "Enter the current year")
+birth_year = askinteger("Input", "What is your birth year")
+if year is not None and birth_year is not None:
+    age = year - birth_year
+    print(age)
 else:
-    print("Name verified.")
+    print("Invalid input for year or birth year")
+    quit()
 
-year = int(input('What is the year? '))
-birth_year = int(input('What is your birth year? '))
-
-weight = int(input('What is your weight? '))
-unit = input('What units were used? L(bs) or (K)g: ')
-
+weight = askinteger("Input", "What is your weight? ")
+unit = askstring("Input", "What is the units for your weight? (K)ilogram or (L) pounds")
 if unit.upper() == "K":
-    converted = weight / 0.45
-    print(f"You are {converted} pounds ")
+  converted = weight / 0.45
 else:
-    converted = weight / 0.45 * 0.45
-    print(f"Conversion not required. Weight is already lb ({converted}lb) ")
+  converted = weight
 
-height = int(float(input("What is your height? ")))
-hunit = input('cm(centimeter) or in(inch)? ')
-heq = ('cm/2.54')
-if hunit == "cm":
-    hcov = height/2.54
-    print(f"You are {hcov}in high! (Converted CM to IN using {heq} )")
+height = askinteger("Input", "What is your height? ")
+hunit = askstring("Input", "Height in cm(centimeter) or in(inch)? ")
+hcov = None  # Initialize hcov with a default value
+if height is not None:
+    if hunit == "cm":
+        hcov = height / 2.54
+        print(f"You are {hcov} in height! ")
+    else:
+        hcov = height
+        print("No conversion required")
 else:
-    hcov = (height/2.54)*2.54
-    print(f"Conversion not required")
+    print("Invalid input for height")
+    quit()
 
-country = input('Which country are you in? ')
-providence = input('Which providence/state do you live in from ' + country + "? ")
-city = input('What city do you live in from ' + providence + "? ")
-age = year - birth_year
-place = city + ", " + providence + ", " + country
-colour = input("What is your favourite colour? ")
+country = askstring("Input", "What is your country that you live in?")
 
-formatted_response = {
-  "fullname": str(full_name),
-  "age": str(age),
-  "conbirthyear":  str(birth_year),
-  "favcol": str(colour),
-  "loc": str(place),
-  "weight": str(converted) + "lb",
-  "height": str(hcov) + "in"
+data = {
+    "Name:": name,
+    "Age": age,
+    "Weight": converted,
+    "Height": hcov,
+    "Residence Country": country
 }
 
-
-json_file = json.dumps(formatted_response)
-Path('details.json').write_text(json_file)
+file_name = str(uuid.uuid4()) + "{}.json"
+with open(file_name, 'w') as f:
+    json.dump(data, f)
+B = Entry(top)
+B.place(x=50,y=50)
+top.mainloop()
