@@ -24,8 +24,6 @@ Steal confidential user data
 Take information for advertisement purposes
 Additionally, to comply with federal law, you are recommended not to take user information that may breach HIPPA (the US Federal Health Information Protection Laws). Users that you ask for information from are recommended to be above the age of 13 and unless you are a licensed medical professional, you are not recommended to ask questions that may breach HIPPA laws or ask any medical questions at all. 
 
-This project is SFW-based meaning all contents and form questions must be PG/PG-13. You are not recommended to ask questions related to consent laws, weapons, drugs (of any type), and other questions for users aged above 16, regardless of the age recommended of 13 for intake information.
-
 The UUID created during JSON dumps is specific to that form, but isn't tagged. It's a unique ID that has no connections with any personal information given in the intake form including:
 
 Age
