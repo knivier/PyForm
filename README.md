@@ -1,5 +1,10 @@
 # PythonForm/Appiform/Apy
 
+### Attention
+As of 7/19/2024, along with many other changes, PyForm will no longer be updated.
+X (formerly Twitter) post: https://x.com/AtomicKniv/status/1814471656175267998
+
+
 A first Python Form project that takes your information and converts it into your units of choice.
 Welcome to the instructions and requests of PythonForm created by Knivier, the creator of the project.
 
